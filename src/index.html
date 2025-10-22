@@ -7,8 +7,388 @@
     <title>HW3</title>
 </head>
 <body>
-    <div id="app">
-        
+
+    <div id="quiz" class="quiz">
+        <div class="question">
+            <div class="q-elem question-header"> Intro </div>
+            <div class="q-elem question-text">
+                <p>It seems like you are in great danger.</p>
+                <p><i class="name">The Fallen</i> has awoken from 10000-year long slumber in his dark castle.</p>
+                <p><i class="name">The Fallen</i> is a powerful demon who sees pleasure in killing people
+                in the most gruesome way possible. And now he is aware of your existence.</p>
+                <p>He has lots of lesser evil creatures at his disposal, ready to tear you apart.</p>
+                <p>He also has the ability to <i>gaze</i>, halting his opponent's attack.</p>
+                <p>You have to survive. Complete series of difficult challenges that prove your intelligence...
+                or die.</p>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-header"> Question 1: Vampire </div>
+            <div class="q-elem question-text">
+                <p><i class="name">The Fallen</i>'s loyal servant, Vlad the Vampire,
+                    is out to get you.</p>
+                <p>Luckily, you know quite a few ways to detect vampires.
+                    For example, they have no shadow.</p>
+                <p>It is actually possible to create a shadow for almost all html-elements.
+                But if you try to add a shadow for a vampire element, it will not work.</p>
+                <p>Knowing this, what property can you use to find out whether the HTML-element
+                is a vampire or not?</p>
+            </div>
+            <div class = "q-elem">
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="correct" name = "question1" id = "q1-v1">
+                    <label for = "q1-v1">box-shadow</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question1" id = "q1-v2">
+                    <label for = "q1-v2">shadow</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question1" id = "q1-v3">
+                    <label for = "q1-v3">self-shadow</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question1" id = "q1-v4">
+                    <label for = "q1-v4">shadow-position</label>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-header"> Question 2: Zombies </div>
+            <div class="q-elem question-text">
+                <p><i class="name">The Fallen</i> unleashed his zombie to infect you.</p>
+                <p>Zombies can infect others through bites when they meet people.
+                    Your goal is to find out which citizens near you are zombies and kill them.</p>
+                <p>Zombie is anyone who has <code>species:"Zombie"</code> property.</p>
+                <p>How many people will become zombies in the following scenario?
+                (initial Zed zombie doesn't count)</p>
+            </div>
+                <pre class="q-elem question-code"><code>
+const zombieMeet = function(human) {
+    human.species = "Zombie";
+}
+const humanMeet = function(human) {
+    console.log("Hi, " + human.name + "!");
+}
+const zombie = {name: "Zed", species: "Zombie", meet: zombieMeet}
+const alice = {name: "Alice", species: "Human", meet: humanMeet}
+const bob = {name: "Bob", species: "Human", meet: humanMeet}
+const carl = {name: "Carl", species: "Human", meet: humanMeet}
+
+zombie.meet(alice);
+alice.meet(bob);
+bob.meet(carl);
+            </code></pre>
+            <div class = "q-elem">
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question2" id = "q2-v1">
+                    <label for = "q2-v1">0</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="correct" name = "question2" id = "q2-v2">
+                    <label for = "q2-v2">1</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question2" id = "q2-v3">
+                    <label for = "q2-v3">2</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question2" id = "q2-v4">
+                    <label for = "q2-v4">3</label>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-header"> Question 3: Zombies, part 2 </div>
+            <div class="q-elem question-text">
+                <p><i class="name">The Fallen</i> is disappointed that his previous zombie had a fatal flaw.
+                This time, he decided to manipulate meet property a bit.
+                It is pretty universal and through "if" it can work both for zombies and humans.</p>
+                <p>Once again, how many people will become zombies in the following scenario?
+                    (initial Zed zombie doesn't count)</p>
+            </div>
+            <pre class="q-elem question-code"><code>
+const defineMeet = function(human) {
+    let mySpecies = human.species;
+    human.meet = function (otherHuman) {
+        if (mySpecies === "Zombie" && otherHuman.species !== "Zombie") {
+            otherHuman.species = "Zombie";
+        }
+    };
+}
+
+const zombie = {name: "Zed", species: "Zombie"}
+const dave = {name: "Dave", species: "Human"}
+const evelyn = {name: "Evelyn", species: "Human"}
+const fiona = {name: "Fiona", species: "Human"}
+
+defineMeet(zombie); defineMeet(dave); defineMeet(evelyn); defineMeet(fiona);
+
+zombie.meet(dave);
+dave.meet(evelyn);
+evelyn.meet(fiona);
+            </code></pre>
+            <div class = "q-elem">
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question3" id = "q3-v1">
+                    <label for = "q3-v1">0</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="correct" name = "question3" id = "q3-v2">
+                    <label for = "q3-v2">1</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question3" id = "q3-v3">
+                    <label for = "q3-v3">2</label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question3" id = "q3-v4">
+                    <label for = "q3-v4">3</label>
+                </div>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-header"> Question 4: Medusa </div>
+            <div class="q-elem question-text">
+                <p>Medusa is a dangerous beast which gaze can petrify you.</p>
+                <p>Not many know, though, that even image of Medusa can turn you into stone.</p>
+                <p><i class="name">The Fallen</i>, with help of Medusa, wants to kill you.
+                    You are now on strange website which contains Medusa image.
+                    When it loads, it will show you Medusa image and kill you.
+                    To avoid it, you pressed <code>F12</code> before it loads and decided to edit CSS-content of the page.
+                    You have time to add one property of <code>.medusa</code> selector until it loads to make website safe to look at.
+                    Choose all the possible properties to add to avoid death.</p>
+                <p>By the way, any error screen on this website contains Medusa image as well, so don't try to make compilation errors.
+                You still have to close website, so you cannot just close your eyes and leave.</p>
+                <p>Remember - your cursor starts already inside the web page when it loads, and of course you are not going to scroll it
+                    - you will close website as soon as it loads. HTML and CSS contents are shown below. </p>
+            </div>
+            <pre class="q-elem question-code"><code>
+&lt!DOCTYPE html&gt
+&lthtml lang="en"&gt
+&lthead&gt
+    &ltmeta charset="UTF-8"&gt
+    &ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt
+    &ltlink rel="stylesheet" href="./medusa.css"&gt
+    &lttitle>Medusa&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+    &ltimg class = "medusa" src="img/medusa.png"&gt&ltimg&gt
+&lt/body&gt
+&lt/html&gt
+            </code></pre>
+            <pre class="q-elem question-code"><code>
+body {
+    width: 20000px; height: 20000px;
+}
+
+.medusa {
+    position: relative;
+    width: 500px; height: 500px;
+    /* Insert your property here */
+}
+
+body:hover .medusa {
+    display: block;
+}
+            </code></pre>
+            <div class="q-option form-checkbox">
+                <input type="checkbox" class="incorrect" id="q4-v1" name="question4" />
+                <label for="q4-v1"><code>display: none;</code></label>
+            </div>
+            <div class="q-option form-checkbox">
+                <input type="checkbox" class="correct" id="q4-v2" name="question4" />
+                <label for="q4-v2"><code>margin: auto;</code></label>
+            </div>
+            <div class="q-option form-checkbox">
+                <input type="checkbox" class="incorrect" id="q4-v3" name="question4" />
+                <label for="q4-v3"><code>background: red;</code></label>
+            </div>
+            <div class="q-option form-checkbox">
+                <input type="checkbox" class="correct" id="q4-v4" name="question4" />
+                <label for="q4-v4"><code>opacity: 0%;</code></label>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-header"> Question 5: Minotaur </div>
+            <div class="q-elem question-text">
+                <p>After successfully hiding from Meduza gaze, you were tracked down by Minotaur.
+                    He kidnapped you and now you are inside his labyrinth.
+                    Get out before he comes back to kill you.</p>
+                <p>Both you and exit are located somewhere in the labyrinth.</p>
+                <p>The possible example of HTML-labyrinth is this:  </p>
+            </div>
+            <pre class="q-elem question-code"><code>
+&ltdiv class="root"&gt
+    &ltdiv class="corridor-1"&gt
+        &ltdiv class="corridor-11"&gt
+            &ltdiv class="corridor-111"&gt
+                &ltdiv class="hero"&gt&lt/div&gt
+            &lt/div&gt
+            &ltdiv class="corridor-112"&gt&lt/div&gt
+        &lt/div&gt
+        &ltdiv class="corridor-12"&gt
+            &ltdiv class="corridor-121"&gt&lt/div&gt
+            &ltdiv class="corridor-122"&gt
+                &ltdiv class="exit"&gt&lt/div&gt
+            &lt/div&gt
+        &lt/div&gt
+    &lt/div&gt
+    &ltdiv class="corridor-2"&lt/div&gt
+&lt/div&gt
+            </code></pre>
+            <div class="q-elem question-text">
+                <p>Note that the actual naming of corridor classes can be arbitrary,
+                    but the root corridor is called "root", there's exactly 1 hero and 1 exit.</p>
+                <p>To make it easier for you to escape, you can edit color property of corridors using specific selectors.
+                    Default color of corridors is set to black.</p>
+                <p>Note that you have just a few minutes, so you can write only 1 selector,
+                    that will make all the corridors on the way from hero to exit blue (and only those corridors)
+                    (in the example case selector should only color corridors "111", "11", "12", and "122" only.
+                    Note that the LCA, "1" in the example case, should not be colored)</p>
+                <p>Which ones from the following selectors are valid for you?</p>
+            </div>
+                <div class="q-option form-checkbox">
+                    <input type="checkbox" class="correct" id="q5-v1" name="question4" />
+                    <label for="q5-v1"><code>
+                        :is(:has(.exit), :has(.hero)):is(:not(:has(.exit)), :not(:has(.hero)))
+                    </code></label>
+                </div>
+                <div class="q-option form-checkbox">
+                    <input type="checkbox" class="incorrect" id="q5-v2" name="question4" />
+                    <label for="q5-v1"><code>
+                        :has(:is(:has(.exit), :has(.hero))):has(:has(.exit)):has(:has(.hero))
+                    </code></label>
+                </div>
+                <div class="q-option form-checkbox">
+                    <input type="checkbox" class="incorrect" id="q5-v3" name="question4" />
+                    <label for="q5-v3"><code>
+                        :is(:has(.exit), :has(.hero))
+                    </code></label>
+                </div>
+                <div class="q-option form-checkbox">
+                    <input type="checkbox" class="correct" id="q5-v4" name="question4" />
+                    <label for="q5-v4"><code>
+                        :is(:has(.exit), :has(.hero)):not(:has(.exit):has(.hero))
+                    </code></label>
+                </div>
+            </div>
+
+
+        <div class="question" id="final-question">
+            <div class="q-elem question-header"> Question 6: The Fallen </div>
+            <div class="q-elem question-text">
+                <p>The time has come.</p>
+                <p><i class="name">The Fallen</i> has finally found you.</p>
+                <p>You can feel his gaze. He is finally there. Watching you. Waiting to make final attack.</p>
+                <p>There is no more escaping. You should defeat him now and for all. Prepare for the battle.</p>
+                <p>Note that <i class="name">The Fallen</i> has the ability to <i>seal</i> you,
+                drastically reducing your damage. To counter this, you can use your sword and try to break seal.
+                You can choose one of 4 swords before the battle. Choose wisely.</p>
+                <p>The battle process is described below: (You can also go to src/battle.js to see it)</p>
+                <p>Hint (hover):
+                <i class="hidden-hint">Attack function is deliberately written in a very weird way with parsings and toString.
+                You may even notice bugs...but those are actually features.</i></p>
+            </div>
+            <pre class="q-elem question-code"><code>
+const attack = function(attacker, defender) {
+    const dmgString = (attacker.power).toString();
+    console.log(`${attacker.name} has attacked ${defender.name} for ${dmgString} damage!`);
+    let dmgNumber = parseInt(dmgString);
+    if (dmgNumber === 0) {
+        dmgNumber = parseFloat(dmgString);
+    }
+    defender.hp = defender.hp - dmgNumber;
+    console.log(`${defender.name} has ${defender.hp} hp remaining!`);
+}
+
+const isDead = function(subject) {return (subject.hp <= 0);}
+
+const FALLEN = {
+    name: "THE FALLEN", hp: 20, power: 12,
+    seal: function(hero) {
+        hero.power = hero.power / 10;
+    }
+}
+
+const hero = {
+    name: "Hero", hp: 100, power: 5,
+    breakSeal: function() {
+        // Defined by your sword
+    }
+}
+
+for (let i = 0; i < 100; i++) {
+    attack(hero, FALLEN);
+    if(isDead(FALLEN)) {
+        console.log("Hero defeats the FALLEN");
+        break;
+    }
+    attack(FALLEN, hero);
+    if(isDead(hero)) {
+        console.log("FALLEN defeats the hero");
+        break;
+    }
+    FALLEN.seal(hero);
+    hero.breakSeal();
+}
+            </code></pre>
+            <div class = "q-elem">
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question-last" id = "boss-v1">
+                    <label for = "boss-v1">
+                        Berserker sword: <code>this.power *= 8; this.hp -= 10;</code>
+                    </label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question-last" id = "boss-v2">
+                    <label for = "boss-v2">
+                        Heavy sword: <code>this.power *= 5;</code>
+                    </label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="incorrect" name = "question-last" id = "boss-v3">
+                    <label for = "boss-v3">
+                        Healing sword: <code>this.power *= 3; this.hp += 3;</code>
+                    </label>
+                </div>
+                <div class = "q-option form-radio">
+                    <input type = "radio" class="correct" name = "question-last" id = "boss-v4">
+                    <label for = "boss-v4">
+                        Cursed sword: <code>this.power /= 10;</code>
+                    </label>
+                </div>
+
+                <div class = "q-option check">
+                    <input type = "radio" class="check" name = "check" id = "check">
+                    <label for = "check">
+                        If you are completely sure about your answers, press me to check them!
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question" id="win-outro">
+            <div class="q-elem question-header"> Results </div>
+            <div class="q-elem question-text">
+                <p>Congratulations.</p>
+                <p>You have managed to defeat <i class="name">The Fallen</i>.
+                Now you can finally be safe.</p>
+                <p>"F***ing cheater..." were the last words <i class="name">The Fallen</i> managed to say,
+                before being banished into eternal darkness.</p>
+                <p>Thank you for completing my quiz!</p>
+            </div>
+        </div>
+
+        <div class="question" id="lose-outro">
+            <div class="q-elem question-header"> Results </div>
+            <div class="q-elem question-text">
+                <p>You failed.</p>
+                <p><i class="name">The Fallen</i> and his minions killed you painfully.</p>
+                <p>You may think again and get all the answers right next time.</p>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
