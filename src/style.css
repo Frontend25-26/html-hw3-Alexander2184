@@ -1,6 +1,262 @@
+@import url('https://fonts.googleapis.com/css?family=Nosifer');
+
+:root {
+    --win-gradient: linear-gradient(-0.03turn, rgba(124, 71, 17, 0.97), rgba(120, 99, 14, 0.97), rgba(106, 117, 17, 0.97));
+    --element-gradient: linear-gradient(-0.03turn, rgba(101, 29, 13, 0.97), rgba(128, 65, 13, 0.97), rgba(126, 99, 11, 0.97));
+    --lose-gradient: linear-gradient(-0.03turn, rgba(108, 12, 49, 0.97), rgba(140, 21, 21, 0.97), rgba(140, 47, 13, 0.97));
+}
+
 body {
+    height: 2000px;
     margin: 0;
     padding: 0;
 
-    background: #292929;
+    background: radial-gradient(circle, rgba(62, 0, 0, 0.93) 0%, rgb(00 00 00 / 93%) 80%), url("img/quiz_background.jpg");
+    backdrop-filter: blur(8px);
+    background-size: 100% 100%;
+}
+
+.question {
+    min-height: 400px;
+    max-height: 700px;
+    overflow-y: auto;
+    width: 800px;
+    background: var(--element-gradient);
+    background-size: 100% 100%;
+    margin: 20px auto;
+    opacity: 60%;
+    border: 4px solid #70310b;
+    border-radius: 24px;
+}
+
+#quiz:has(.check:checked) .question:has(.correct:checked) {
+    background: var(--win-gradient);
+    border-color: #354505;
+}
+
+#quiz:has(.check:checked) .question:is(:has(.incorrect:checked), :has(.correct:not(:checked))) {
+    background: var(--lose-gradient);
+    border-color: #450505;
+}
+
+.question:hover {
+    opacity: 95%;
+}
+
+.question:hover:nth-child(n+3) {
+    background: var(--element-gradient), url("img/question_background_0.png");
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) .question:hover:nth-child(n+3) {
+    background: var(--win-gradient), url("img/question_background_0.png");
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) .question:hover:nth-child(n+3):is(:has(.incorrect:checked), :has(.correct:not(:checked))) {
+    background: var(--lose-gradient), url("img/question_background_0.png");
+    background-size: 100% 100%;
+}
+
+.question:hover:nth-child(n+5) {
+    background: var(--element-gradient), url("img/question_background_1.png");
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) .question:hover:nth-child(n+5) {
+    background: var(--win-gradient), url("img/question_background_1.png");
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) .question:hover:nth-child(n+5):is(:has(.incorrect:checked), :has(.correct:not(:checked))) {
+    background: var(--lose-gradient), url("img/question_background_1.png");
+    background-size: 100% 100%;
+}
+
+
+.question-header {
+    font-family: 'Nosifer', serif;
+    color: #401b00;
+    margin: 10px 10px 10px 30px;
+    font-size: 30px;
+}
+
+#quiz:has(.check:checked) .question-header {
+    color: #044000;
+}
+
+#quiz:has(.check:checked) #win-outro .question-header {
+    color: #044000;
+}
+
+#quiz:has(.check:checked) .question:is(:has(.incorrect:checked), :has(.correct:not(:checked))) .question-header {
+    color: #400000;
+}
+
+#quiz:has(.check:checked) #lose-outro .question-header {
+    color: #400000;
+}
+
+.question-text {
+    text-indent: 30px;
+}
+
+.q-elem {
+    margin: 20px;
+}
+
+.question-code {
+    max-height: 400px;
+    overflow-y:auto;
+    background: #a6733f 30%;
+    border: 2px solid #bd6500;
+    border-radius: 5px;
+    opacity: 70%;
+}
+
+#quiz:has(.check:checked) .question-code {
+    max-height: 400px;
+    overflow-y:auto;
+    background: #509a13 30%;
+    border: 2px solid #35750b;
+    border-radius: 5px;
+    opacity: 70%;
+}
+
+#quiz:has(.check:checked) .question:is(:has(.incorrect:checked), :has(.correct:not(:checked))) .question-code {
+    max-height: 400px;
+    overflow-y:auto;
+    background: #a63f3f 30%;
+    border: 2px solid #bd0000;
+    border-radius: 5px;
+    opacity: 70%;
+}
+
+#quiz:has(.check:checked) #final-question {
+    animation: none;
+    background: var(--win-gradient);
+    border-color: #354505;
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) #final-question:is(:has(.incorrect:checked), :has(.correct:not(:checked))) {
+    animation: none;
+    background: var(--lose-gradient);
+    border-color: #450505;
+    background-size: 100% 100%;
+}
+
+
+#final-question:hover {
+    animation: twoFrames 30s infinite;
+    background-size: 100% 100%;
+    opacity: 95%;
+}
+
+@keyframes twoFrames {
+    0% {
+        background: var(--element-gradient), url("img/question_background_final.png");
+        background-size: 100% 100%;
+        opacity: 95%;
+    }
+    97% {
+        background: var(--element-gradient), url("img/question_background_final.png");
+        background-size: 100% 100%;
+        opacity: 95%;
+    }
+    98% {
+        background: var(--element-gradient), url("img/question_background_blink.png");
+        background-size: 100% 100%;
+        opacity: 95%;
+    }
+    100% {
+        background: var(--element-gradient), url("img/question_background_final.png");
+        background-size: 100% 100%;
+        opacity: 95%;
+    }
+}
+
+#quiz:has(.check:checked) #final-question:is(:has(.incorrect:checked), :has(.correct:not(:checked))):hover {
+    animation: none;
+    background: var(--lose-gradient), url("img/question_background_final_lose.png");
+    background-size: 100% 100%;
+    opacity: 95%;
+}
+
+#quiz:has(.check:checked) #final-question:hover {
+    animation: none;
+    background: var(--win-gradient), white;
+    background-size: 100% 100%;
+    opacity: 95%;
+}
+
+#win-outro {
+    display: none;
+    background: var(--win-gradient), url("img/question_background_final_dead.png");
+    border-color: #354505;
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) #win-outro:hover {
+    background: var(--win-gradient), url("img/question_background_final_dead.png");
+    background-size: 100% 100%;
+    border-color: #354505;
+    opacity: 95%
+}
+
+body:not(:is(:has(.correct:not(:checked)), :has(.incorrect:checked))) #quiz:has(.check:checked)  #win-outro {
+    display: block;
+}
+
+#lose-outro {
+    display: none;
+    background: var(--lose-gradient), url("img/question_background_final_lose.png");
+    border-color: #450505;
+    background-size: 100% 100%;
+}
+
+#quiz:has(.check:checked) #lose-outro:hover {
+    background: var(--lose-gradient), url("img/question_background_final_lose.png");
+    background-size: 100% 100%;
+    border-color: #450505;
+    opacity: 95%
+}
+
+body:is(:has(.correct:not(:checked)), :has(.incorrect:checked)) #quiz:has(.check:checked)  #lose-outro {
+    display: block;
+}
+
+
+.name {
+    font-family: 'Nosifer', serif;
+    font-style: italic;
+    font-weight: 1000;
+    font-size: 16px;
+}
+
+
+.hidden-hint {
+    visibility: hidden;
+}
+
+
+p:hover .hidden-hint {
+    visibility: visible;
+}
+
+.q-option {
+    margin: 10px 10px 10px 20px;
+    font-size: 18px;
+}
+
+#quiz:has(.check:checked) .q-option:has(.correct:checked) {
+    color: #53b80e;
+}
+
+#quiz:has(.check:checked) .q-option:has(.incorrect:checked) {
+    color: #ff0000;
+}
+
+.check {
+    margin: 40px 12px;
 }
